@@ -1,0 +1,3 @@
+[submodule "js/okvideo"]
+	path = js/okvideo
+	url = https://github.com/okfocus/okvideo.git
