@@ -16,10 +16,6 @@ function classify($yt_videoid){
         curl_close($ch);
         fclose($fp);
 
-        if($i === 0){ // 1st one is HQ
-            system("convert -resize 120x90 $fn $fn"); // lazy!
-        }
-
         // calculate vectors
         $cvec[] = puzzle_fill_cvec_from_file($fn);
         unlink($fn);
