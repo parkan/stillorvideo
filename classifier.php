@@ -1,6 +1,6 @@
 <?php
 
-function classify($yt_videoid){
+function analyze($yt_videoid){
     $base_url = "http://img.youtube.com/vi/%s/%u.jpg"; // TODO: implement this via API instead of uri substitution
     $cvec = [];
 
@@ -38,11 +38,16 @@ function classify($yt_videoid){
 
     $sum = array_sum($cdiff);
     $thresh_sum = array_sum($cthresh);
+
+    return [ $sum, $thresh_sum ];
+} 
+
+function classify($yt_videoid){
+    list($sum, $thresh_sum) = analyze($yt_videoid);
+
     if ($sum < 2){
         echo "Static video (sum: $sum thresh_sum: $thresh_sum)\n";
     } else {
         echo "Music video (sum: $sum thresh_sum: $thresh_sum)\n";
     }
-
-    return $sum;
 }
