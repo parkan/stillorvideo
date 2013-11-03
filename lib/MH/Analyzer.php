@@ -2,7 +2,7 @@
 
 namespace MH;
 
-abstract class Classifier {
+abstract class Analyzer {
     private $_distancesAll;
     protected $cvec;
 
@@ -41,7 +41,7 @@ abstract class Classifier {
     }
 }
 
-class YTThumbClassifier extends Classifier {
+class YTThumbAnalyzer extends Analyzer {
     private $base_url = "http://img.youtube.com/vi/%s/%u.jpg"; // TODO: implement this via API instead of uri substitution (?)
     private $yt_videoid;
 
@@ -71,7 +71,7 @@ class YTThumbClassifier extends Classifier {
     }
 }
 
-class ExtraThumbClassifier extends Classifier {
+class ExtraThumbAnalyzer extends Analyzer {
     function __construct($yt_videoid){
         $this->cvec = [];
         // TODO: $this->getVideo();
