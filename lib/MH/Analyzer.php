@@ -6,6 +6,10 @@ abstract class Analyzer {
     private $_distancesAll;
     protected $cvec;
 
+    const SUM = 1;
+    const VARIANCE = 2;
+    const THRESHCOUNT = 3;
+
     function distancesAll(){
     // array of distances between available frames
         if(empty($this->distancesAll)){
@@ -38,5 +42,14 @@ abstract class Analyzer {
             $over_thresh += ($d > PUZZLE_CVEC_SIMILARITY_THRESHOLD ? 1 : 0);
         }
         return $over_thresh;
+    }
+
+    function dimensions(){
+        $problem = [
+                self::SUM => $this->distanceSum(),
+                self::VARIANCE => $this->distanceVariance(),
+                self::THRESHCOUNT => $this->distanceThreshCount()
+            ];
+        return $problem;
     }
 }
